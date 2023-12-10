@@ -20,7 +20,6 @@ Very simple entry point for my future OpenGl applications.
 ## USAGE
 All you need to do is navigate to the "src/Tests" folder and create your custom "Test" class, inheriting from the base "Test" class.
 Depending on your needs, you can override specific functions. 
-All functions and their usage are clearly explained and commented in the "Test.h" file, as well as in the "main.cpp" file.
 
 For a better understanding, you can refer to the example files "SimpleTriangle.cpp" and "SimpleTriangle.h."
 These files provide a clear illustration of the implementation.

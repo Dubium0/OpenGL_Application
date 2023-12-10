@@ -11,7 +11,7 @@ SimpleTriangle::SimpleTriangle(ContextSettings& settings): Test(settings){
 	lastX = 300;
 	lastY = 400;
 	position = glm::vec3(0.0f);
-	rotation = glm::vec3(0.0f);//euler angles
+	rotation = glm::vec3(0.0f);
 	scale = glm::vec3(1.0f);
 	
 	model = glm::mat4(1.0f);
@@ -27,7 +27,7 @@ SimpleTriangle::SimpleTriangle(ContextSettings& settings): Test(settings){
 
 void SimpleTriangle::OnSetup() {
 					//positions       // colors
-	vertices = {	 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, // top 
+	vertices = {	 0.0f, 0.5f, 0.0f, 1.0f, 0.0f, 0.0f, // top 
 					-0.5f,-0.5f, 0.0f, 0.0f, 1.0f, 0.0f,// left  bottom
 					 0.5f,-0.5f, 0.0f, 0.0f, 0.0f, 1.0f// right bottom
 								};
@@ -40,7 +40,7 @@ void SimpleTriangle::OnSetup() {
 	vertexArray->AddVertexArrayAttributef(*vertexBuffer, attribute);
 	shader = new dGL::Shader(currentDir + "Resources/Shaders/simpleVertexShader.vert", currentDir + "Resources/Shaders/simpleFragmentShader.frag");
 	camera = new dGL::Camera();
-	camera->Position = glm::vec3(0.0f, 0.0f, 3.0f);
+	camera->Position = glm::vec3(0.0f, 0.0f, 2.0f);
 	glfwSwapInterval(0);
 	
 	
@@ -71,6 +71,13 @@ void SimpleTriangle::OnImguiUpdate(const double& deltaTime, const ImGuiIO& io) {
 	ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / io.Framerate, io.Framerate);
 	ImGui::End();
 
+	ImGui::Begin("Controls ");
+	ImGui::Text(" To look around, right click with your mouse. ");
+	ImGui::Text(" To move around, right click with your mouse and use movement keys. ");
+	ImGui::Text( "Movement Keys :\n'W' : forward \n'A' : left \n'S' : backward \n'D' : right \n'Q' : ascend \n'E' : descend  ");
+
+	
+	ImGui::End();
 }
 void SimpleTriangle::OnRenderUpdate(const double& deltaTime,int SCREEN_WIDTH, int SCREEN_HEIGHT) {
 	glClearColor(0.28f, 0.28f, 0.28f, 1.0f);
