@@ -5,10 +5,19 @@
 namespace dGL {
 	class Shader {
 	public:
-		Shader(const std::string& vertexPath, const std::string& fragmentPath);
+		Shader():ID(0){}
+		~Shader(){ 
+			if (ID) {
+
+				glDeleteProgram(ID);
+				glCheckError();
+			}
+		}
+	
+		void InitV_F_Shader(const std::string& vertexPath, const std::string& fragmentPath);
 		// Most functionalities are same so I will make compute shader as an option here
-		Shader(const std::string& computeShaderPath);
-		~Shader(){ glDeleteProgram(ID);}
+		void InitC_Shader(const std::string& computeShaderPath);
+		
 
 		inline void Bind() const {
 			glUseProgram(ID);
@@ -58,6 +67,7 @@ namespace dGL {
 
 	private:
 		unsigned int ID;
+		
 	
 		std::string getShaderCode(const std::string& path) const;
 	

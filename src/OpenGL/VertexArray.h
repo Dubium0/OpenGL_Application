@@ -26,7 +26,9 @@ namespace dGL {
 	class VertexArray
 	{
 	public:
-		VertexArray(): ID(0) {
+		
+		VertexArray(): ID(0) {}
+		void Init() {
 			glGenVertexArrays(1, &ID);
 			glCheckError();
 			glBindVertexArray(ID);
@@ -34,8 +36,10 @@ namespace dGL {
 		}
 	
 		~VertexArray() {
-			glDeleteVertexArrays(1, &ID);
-			glCheckError();
+			if (ID) {
+				glDeleteVertexArrays(1, &ID);
+				glCheckError();
+			}
 		}
 	
 		inline void Bind() const {

@@ -5,7 +5,14 @@ namespace dGL {
     class ShaderStorageBuffer {
 
     public:
-        ShaderStorageBuffer(const void* data, unsigned int size, unsigned int bufferBase, GLenum usage) :ID(0) {
+        ShaderStorageBuffer() :ID(0) {}
+        ~ShaderStorageBuffer() {
+            if (ID) {
+                glDeleteBuffers(1, &ID);
+                glCheckError();
+            }
+        }
+        void Init(const void* data, unsigned int size, unsigned int bufferBase, GLenum usage) {
             glGenBuffers(1, &ID);
             glCheckError();
             glBindBuffer(GL_SHADER_STORAGE_BUFFER, ID);
@@ -14,9 +21,6 @@ namespace dGL {
             glCheckError();
             glBindBufferBase(GL_SHADER_STORAGE_BUFFER, bufferBase, ID);
             glCheckError();
-        }
-        ~ShaderStorageBuffer() {
-            glDeleteBuffers(1, &ID);
         }
         inline void Bind() const {
             glBindBuffer(GL_SHADER_STORAGE_BUFFER, ID);

@@ -3,7 +3,14 @@
 namespace dGL {
 	class IndexBuffer {
 	public:
-		IndexBuffer(const void* data, unsigned int size) {
+		IndexBuffer():ID(0) {}
+		~IndexBuffer() {
+			if (ID) {
+				glDeleteBuffers(1, &ID);
+				glCheckError();
+			}
+		}
+		void Init(const void* data, unsigned int size) {
 			glGenBuffers(1, &ID);
 			glCheckError();
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ID);
@@ -11,10 +18,6 @@ namespace dGL {
 			glBufferData(GL_ELEMENT_ARRAY_BUFFER, size, data, GL_STATIC_DRAW);
 			glCheckError();
 
-		}
-		~IndexBuffer() {
-			glDeleteBuffers(1, &ID);
-			glCheckError();
 		}
 
 		inline void Bind() const{

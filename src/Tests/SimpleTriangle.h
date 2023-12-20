@@ -7,12 +7,7 @@ class SimpleTriangle : public Test {
 public:
 	// adjust your context here
 	SimpleTriangle(ContextSettings& settings); 
-	~SimpleTriangle() {
-		vertexArray->~VertexArray();
-		vertexBuffer->~VertexBuffer();
-		shader->~Shader();
-		delete camera;
-	}
+	
 	void OnSetup() override;
 	void OnImguiUpdate(const double& deltaTime, const ImGuiIO& io) override;
 	void OnRenderUpdate(const double& deltaTime,int SCREEN_WIDTH = 800, int SCREEN_HEIGHT = 600) override;
@@ -27,11 +22,10 @@ private:
 	glm::vec3 position, rotation, scale;
 	glm::mat4 model, view, projection;
 
-	dGL::VertexArray* vertexArray;
-	dGL::VertexBuffer* vertexBuffer;
-
-	dGL::Shader* shader;
-	dGL::Camera* camera;
+	dGL::VertexArray vertexArray;
+	dGL::VertexBuffer vertexBuffer;
+	dGL::Shader shader;
+	dGL::Camera camera;
 
 	float lastX, lastY;
 	bool firstMouse = true;

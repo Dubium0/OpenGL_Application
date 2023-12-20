@@ -73,7 +73,7 @@ namespace dGL {
         }
 
 
-        void ProcessMouseMovement(float xoffset, float yoffset, GLboolean constrainPitch = true)
+        void ProcessMouseMovement(float xoffset, float yoffset, bool constrainPitch = true)
         {
             xoffset *= MouseSensitivity;
             yoffset *= MouseSensitivity;

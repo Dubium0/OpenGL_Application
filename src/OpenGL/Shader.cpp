@@ -1,7 +1,7 @@
 #pragma once
 #include "Shader.h"
 namespace dGL {
-    Shader::Shader(const std::string& vertexPath, const std::string& fragmentPath) {
+    void Shader::InitV_F_Shader(const std::string& vertexPath, const std::string& fragmentPath) {
         std::string vShader_code = getShaderCode(vertexPath);
         std::string fShader_code = getShaderCode(fragmentPath);
         const char* vShader = vShader_code.c_str();
@@ -42,7 +42,7 @@ namespace dGL {
 
 
     }
-    Shader::Shader(const std::string& computeShaderPath) {
+    void Shader::InitC_Shader(const std::string& computeShaderPath) {
         std::string cShader_code = getShaderCode(computeShaderPath);
 
         const char* cShader = cShader_code.c_str();
@@ -68,9 +68,6 @@ namespace dGL {
 
 
     }
-
-
-
 
     std::string Shader::getShaderCode(const std::string& path) const {
 

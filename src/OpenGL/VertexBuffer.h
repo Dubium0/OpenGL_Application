@@ -4,8 +4,8 @@ namespace dGL {
 	class VertexBuffer {
 	public:
 
-
-		VertexBuffer(const void* data, unsigned int size) : ID(0) {
+		VertexBuffer() : ID(0) {}
+		void Init(const void* data, unsigned int size) {
 			glGenBuffers(1, &ID);
 			glCheckError();
 			Bind();
@@ -13,9 +13,12 @@ namespace dGL {
 			glCheckError();
 			UnBind();
 		}
+
 		~VertexBuffer(){
-			glDeleteBuffers(1, &ID);
-			glCheckError();
+			if (ID) {
+				glDeleteBuffers(1, &ID);
+				glCheckError();
+			}
 		}
 	
 		inline void Bind() const {
