@@ -4,6 +4,9 @@
 Very simple entry point for  OpenGl applications.
 
 ## How to use
+
+Make sure you have installed GLEW 
+
 ### Windows
 1. Clone the project 
 2. Create a build directory in project folder and run cmake
