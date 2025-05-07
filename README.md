@@ -1,7 +1,7 @@
 # OpenGL_Application
 
 ##  Description
-Very simple entry point for my future OpenGl applications.
+Very simple entry point for  OpenGl applications.
 
 ## How to use
 ### Windows
